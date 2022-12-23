@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"></html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Exo&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link type="text/css" href="" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <title>Items Shop Database</title>
+</head>
+<body>
+<div class="main">
+    <a href="/itemList"><h1>Electronic Shop Database</h1></a>
+<br>
+    <button type="submit"><a href="/newitem">Add new item</a></button>
+    <br>
+<form action="#" th:action="@{/search}" method="post">
+<input type="text" name="searchParam">
+<button type="submit">Search item by name</button>
+</form>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Item Code</th>
+            <th scope="col">Date of arrival</th>
+            <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${items}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.itemCode}"></td>
+            <td th:text="${item.doa}"></td>
+            <td>
+                <a th:href="@{'/editItem/' + ${item.id}}">Edit</a>
+                <a th:href="@{'/deleteItem/' + ${item.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+</table>
+</div>
+</body>
+</html>
